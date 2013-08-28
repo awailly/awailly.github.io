@@ -1,0 +1,621 @@
+Malware vs *Virtualization* The endless cat and mouse play
+==========================================================
+Aurélien Wailly
+v1.0, June 21, 2013
+:title: Malware vs Virtualization: The endless cat and mouse play
+:copywrite: CC BY-SA 2.0
+:website: http://aurelien.wail.ly
+:slidesurl: aurelien.wail.ly/publications/hip-2013-slides.html
+:imagesdir: images
+:backend: dzslides
+:linkcss:
+:dzslides-style: stormy-dad
+:dzslides-transition: fade
+:dzslides-highlight: monokai
+:dzslides-fonts: family=Yanone+Kaffeesatz:400,700,200,300&family=Cedarville+Cursive
+:syntaxoff: syntax="no-highlight"
+
+== {slidesurl}
+
+['qrcode', target='presentation-qrcode.png', size=20, alt='{slidesurl}', role='middle stretch-y']
+----
+http://aurelien.wail.ly/publications/hip-2013-slides.html
+----
+
+== Plan
+
+[role="incremental"]
+* Malwares today
+* Research environment
+* Detection
+* Reaction
+* Roadmap
+
+// Ce que l'on va voir
+
+== Virtualization
+
+[role="incremental"]
+* Easy *provisionning*
+* *Rollback*
+* *Consolidation*
+* Resource *control*
+* *Rarely* used
+* Often the sign of an *analysis*
+// Vous par exemple, vous l'utilisez pour quoi?
+
+//image:walk.jpg[width=256, caption="Walkthrough", role="pull-right"]
+
+// Ce qui explique la premiere partie de ce talk
+
+== Virtualization usages
+
+*Bright side*
+
+[role="incremental split"]
+* Easy *sandbox* [detail]#VMWare player#
+* No traces
+* Debug *kernels*
+* Try other OSes
+
+[role="split"]
+* {nbsp}
+* {nbsp}
+
+[role="incremental"]
+*Dark Side*
+
+[role="incremental split"]
+* Intercept [detail]#BluePilling see after#
+* Ultimate *obfuscation*
+
+[{intro}]
+== Mainly for *testing* purposes!
+
+== Malware
+
+[role="incremental"]
+* Largely *dissected* [detail]#Anubis, malwr, GFI#
+* *Adaptable* behavior
+* *Alex* recommends VM Detection
+image:alex-vm-detection.png[width=720, caption="Alex conclusion"]
+
+// https://www.sstic.org/media/SSTIC2013/SSTIC-actes/conf_invit2_j3_2013/SSTIC2013-Slides-conf_invit2_j3_2013-dulaunoy.pdf
+
+// Pourquoi les malwares
+// Ce qui explique la deuxieme partie de ce talk
+
+== On the bright side
+
+Malwares *may* detect virtualized environments
+[{stepwise}]
+* Adopt *clean* behavior
+* *Targeted* attacks
+
+== On the bright side
+
+Malwares *may* detect virtualized environments
+
+* Adopt *clean* behavior
+* *Targeted* attacks
+
+["blockdiag",target="blockdiag-modify-behavior.png", role="stretch-x"]
+---------------------------------------------------------------------
+blockdiag {
+    default_shape = roundedbox;
+    default_fontsize = 24;
+
+    Malware -> Calc.exe;
+    Malware -> backd00r;
+}
+---------------------------------------------------------------------
+
+== On the dark side
+
+Games *may* detect virtualized environments
+[{stepwise}]
+* Cheat detection
+* Protect against fake hardware
+
+== On the dark side
+
+Games *may* detect virtualized environments
+
+* Cheat detection
+* Protect against fake hardware
+
+["blockdiag",target="blockdiag-cheat.png", role="stretch-x"]
+---------------------------------------------------------------------
+blockdiag {
+    default_shape = roundedbox;
+    default_fontsize = 24;
+    "Cheat bot" [color = red]
+    "Send keystrokes" [color = red]
+    Kernel [color = red]
+    Game [color = red]
+
+    "Cheat bot" -> "Send keystrokes" -> Kernel -> Game;
+}
+---------------------------------------------------------------------
+
+["blockdiag",target="blockdiag-cheat-vmm.png", role="stretch-x"]
+---------------------------------------------------------------------
+blockdiag {
+    default_shape = roundedbox;
+    default_fontsize = 24;
+    Game [color = red]
+
+    "Cheat bot" -> "Send keystrokes" -> VMM -> Game;
+}
+---------------------------------------------------------------------
+
+[{intro}]
+== Who is *leading* ?
+
+[{intro}]
+== How to detect Virtualized environments ?
+
+[role="incremental"]
+Is it easier to *hide* or to *detect* ?
+
+== Targeted escape
+
+Sandbox environments have to
+[{stepwise}]
+* Extract executable actions
+* Communicate results
+
+== Demo Cuckoo
+
+image::cuckoo-first-dll.png[caption="Cuckoo"]
+
+== Demo Cuckoo
+
+image::cuckoo-first-dll-zoom.png[caption="Cuckoo zoom"]
+
+== Dark wizard
+
+image::are-you-wizard.jpg[caption="Meh :)"]
+
+== Going deeper
+
+[{stepwise}]
+* Virtualization
+** CPU -> vCPU
+** Memory -> Another MMU layer
+
+== CPU overview
+
+* Information tables
+[{stepwise}]
+** Interrupt Descriptor Table [detail]#IDT#
+** Local/Global Descriptor Table [detail]#LDT/GDT#
+
+[{statement}]
+Each processor have its *own* IDT
+
+== Redpill
+
+[{stepwise}]
+* Where to put vCPU's IDT ?
+
+.Location differences
+[grid="all", frame="all", options="header", cols=">a,>a"]
+|=====================
+|Physical|Virtual
+|0x80000000|0xc0000000
+|=====================
+
+footnote:[2004, J.Rutkowska]
+
+== Processor features
+
+CPU Informations
+[{stepwise}]
+* Processor brand string 0x80000002
+* IsHypervisorPresent!
+
+== Virtualization overhead
+
+*VM Entry* example
+["blockdiag",target="blockdiag-overhead.png", role="stretch-x"]
+---------------------------------------------------------------------
+blockdiag {
+    default_shape = roundedbox;
+    default_fontsize = 24;
+
+    "JMP 0x1000" -> vMMU -> "JMP 0x81000" -> MMU -> "JMP 0x987000";
+    "JMP 0x1000" -> MMU -> "JMP 0x987000";
+}
+---------------------------------------------------------------------
+
+[{stepwise}]
+* *VM Entry* / *VM Exit* cost
+* Measurements
+
+== Translation Lookaside Buffer
+
+image:tlb-intro.png[caption="TLB Illustrated", role="pull-right"]
+
+* TLB Illustrated
+** Page Walking is expensive
+
+== Translation Lookaside Buffer
+
+* Virtual memory has pecularities
+[{stepwise}]
+** Flush TLB while VMEXIT
+
+* How to test *VMM presence* ?
+[{stepwise}]
+** Fill TLB => VM Exit
+** Modification of at least *one* TLB entry
+** Compare access times
+
+// Schéma cpu / cpu+vmm
+
+== TLB detection
+
+image:tlb-full.png[caption="TLB Illustrated", role="pull-right"]
+
+== TLB detection
+
+image:tlb-full-time.png[caption="TLB Illustrated", role="pull-right"]
+
+== TLB detection
+
+image:tlb-full-vmm.png[caption="TLB Illustrated", role="pull-right"]
+
+== TLB detection
+
+image:tlb-full-time-miss.png[caption="TLB Illustrated", role="pull-right"]
+
+[{intro}]
+== How to benchmark
+
+== Processor facilities
+
+Integrated instructions
+[{stepwise}]
+* Time Stamp Counter: RDTSC, RDTSCP
+* Real-Time Clock: ioctl(/dev/rtc0)
+* Periodic Interrupt Timer (PIT)
+
+[{stepwise}]
+Not very accurate
+
+footnote:[http://download.intel.com/embedded/software/IA/324264.pdf]
+
+== High precision Timers
+
+* Higher *frequecy*
+* *64b* resolution
+
+[{stepwise}]
+Poor compatibility
+
+== External Timers
+
+Rely on external protocol
+[{stepwise}]
+* NTP/SNTP: Not precise
+
+== No reference
+
+Ratio
+[{stepwise}]
+* Compare *counters*
+
+// Reprendre le schéma cpu / cpu+vmm
+image:ratio-nop-cpuid.png[caption="Without timers", role="pull-right"]
+
+== Discrepancies
+
+Processors does not produce expected behavior
+[{stepwise}]
+* Wrong emulation [detail]#f00f bug, smsw#
+* Specific hypercalls, accelerated graphic/drag and drop [detail]#Peter Ferrie#
+* Typical attack: Oversized instruction [detail]#more than 15B#
+
+== Integrated facilities
+
+[{statement}]
+Démo
+
+[role="incremental statement"]
+*WIN*
+
+[{source}]
+== Baremetal
+
+[syntax="bash"]
+----
+dad@gambas ~/Projets/DetectHypervisor % ./detect2
+000000: 50 65 6e 74                                      Pent
+000000: 69 75 6d 28                                      ium(
+000000: 52 29 20 44                                      R) D
+000000: 75 61 6c 2d                                      ual-
+[+] IDT base: 819da000
+[+] SIDT[5] : 0x81
+[+] SIDT[5] : 0x81
+cpuid 1 ecx: 0c00e3bd bit:0
+MSW: 8005003b
+Ratio: 207.865799
+----
+
+[{source}]
+== VWare Player
+
+[syntax="bash"]
+----
+dad@debian:~$ ./detect2 
+000000: 50 65 6e 74                                      Pent
+000000: 69 75 6d 28                                      ium(
+000000: 52 29 20 44                                      R) D
+000000: 75 61 6c 2d                                      ual-
+[+] IDT base: 8172d000
+[+] SIDT[5] : 0x81
+[+] SIDT[5] : 0x81
+cpuid 1 ecx: 8c202201 bit:1
+MSW: 8005003b
+Ratio: 1588.099243
+----
+
+[{source}]
+== ESXi
+
+[syntax="bash"]
+----
+ubuntu@ubuntu:~$ ./detect2 
+000000: 49 6e 74 65                                      Inte
+000000: 6c 28 52 29                                      l(R)
+000000: 20 58 65 6f                                       Xeo
+000000: 6e 28 52 29                                      n(R)
+[+] IDT base: 81dd9000
+[+] SIDT[5] : 0x81
+[+] SIDT[5] : 0x81
+cpuid 1 ecx: 82982203 bit:1
+MSW: 8005003b
+Ratio: 615.849609
+----
+
+Thanks Pascal!
+
+[{source}]
+== Qemu
+
+[syntax="bash"]
+----
+root@debian:~# ./detect2 
+000000: 51 45 4d 55                                      QEMU
+000000: 20 56 69 72                                       Vir
+000000: 74 75 61 6c                                      tual
+000000: 20 43 50 55                                       CPU
+[+] IDT base: 8172d000
+[+] SIDT[5] : 0x81
+[+] SIDT[5] : 0x81
+cpuid 1 ecx: 80802001 bit:1
+MSW: cccc003b
+Ratio: 3.352355
+----
+
+[{source}]
+== KVM
+
+[syntax="bash"]
+----
+root@debby:~# ./detect2 
+000000: 51 45 4d 55                                      QEMU
+000000: 20 56 69 72                                       Vir
+000000: 74 75 61 6c                                      tual
+000000: 20 43 50 55                                       CPU
+[+] IDT base: 81738000
+[+] SIDT[5] : 0x81
+[+] SIDT[5] : 0x81
+cpuid 1 ecx: 80802001 bit:1
+MSW: 8005003b
+Ratio: 901.177551
+----
+
+[{source}]
+== Xen
+
+[syntax="bash"]
+----
+root@Xenny:~# ./detect2 
+000000: 49 6e 74 65                                      Inte
+000000: 6c 28 52 29                                      l(R)
+000000: 20 58 65 6f                                       Xeo
+000000: 6e 28 52 29                                      n(R)
+[+] IDT base: 8172d000
+[+] SIDT[5] : 0x81
+[+] SIDT[5] : 0x81
+cpuid 1 ecx: 81b82221 bit:1
+MSW: 8005003b
+Ratio: 681.817383
+----
+
+Thanks Alex!
+
+[{intro}]
+== P. Ferrie: status
+
+[{statement}]
+*in progress*
+
+== Formalization
+
+VM detection categories
+[{stepwise}]
+* *Logical* discrepancies
+** Unexpected CPU behavior
+* *Resources* discrepancies
+** Qemu hard drive
+** "VMware" in windows registry
+* *Timing* discrepancies
+** VMM overhead
+
+footnote::[T.Garfinkel]
+
+== How to find discrepancies
+
+[{stepwise}]
+* Random tests
+* Learn from http://www.intel.com/content/dam/doc/specification-update/mobile-pentium-4-supporting-hyper-threading-on-90-nm-process-technology-specification-update.pdf[*won't fix*] (think tuesday patch) http://www.intel.com/content/dam/www/public/us/en/documents/specification-updates/3rd-gen-core-desktop-specification-update.pdf[!]
+
+image:intel-wont-fix.png[height="300", caption="Won't fix", role="pull-right"]
+
+footnote::[T.Raffetserder]
+
+== What about using network
+
+[{stepwise}]
+* TCP *RTT* differs for virtualized environments
+* *Mimic* virtualization to evade malware infection
+* Taxonomy, extended by M. Lindorfer
+
+//[role="incremental"]
+//*Proposition to fake an environment*
+
+footnote::[X.Chen, and M.Lindorfer]
+
+== Automatization
+
+[{stepwise}]
+* Fistful of redpills
+* Create similar context and compare results
+
+[role="incremental"]
+*20 000* in few *hours*
+
+image:gen-red-pills.png[caption="Redpills generation", role="pull-right"]
+
+== Are malwares using detection ?
+
+[{stepwise}]
+* Tool to analyze malware behaviour through differential analysis
+* *Less than 2%* tries to detect virtualization
+* Only used by *worsts*
+
+image:detect-comp-env.png[caption="Without timers", role="pull-right"]
+
+== Shark avion
+
+image::velociraptor-riding-a-shark.jpg[caption="Good catch, send it to me :)"]
+
+[{intro}]
+== Hiding
+
+== Anti-detection
+
+[{stepwise}]
+* Mechanisms *formalization*
+* First architecture and implementation (Ether)
+* Consider *unexpected* behaviors (f00f)
+* Setup several *counter measures*
+** Modify CPU registers
+** Use shadow page tables
+** Prevent timing with *TSC_OFFSET*
+
+== Least virtualization
+
+[{stepwise}]
+* To hinder virtualization effects, only vital components are virtualized
+* Mostly passthrough, few VMEXITs but only support *1 VM*
+* Reduce hypervisor footprint 
+
+footnote::[A.Nguyen and E.Keller]
+
+== Going deeper
+
+[{statement}]
+*Physical virtualization*
+
+== Example: Barebox
+
+[{stepwise}]
+* Support snapshots
+* Volatile memory with RAID mirroring
+* Save machine state (registers and interrupts) when OS boots
+* Allows quick rollback (reboot on clean machine < 4s)
+
+//== Example: Barebox (contd)
+//
+//Features
+//[{stepwise}]
+//* Save machine and hard drive state and at windows boot on read only drive
+//* A second hard drive save write accesses for forensics
+//* Reboot in *4 seconds*
+//
+== Patching defects
+
+* http://helious.net/mavmm.pdf[MAVMM] avoid TLB flushing with new VT-d
+
+[{statement}]
+Awesome part: Free code *available!* (!Ether)
+
+== New architectures
+
+Virtualize without Hypervisors
+[{stepwise}]
+* Physicalization
+* http://ether.gtisc.gatech.edu/[Ether]
+* http://www.cs.princeton.edu/~jrex/papers/isca10.pdf[NoHype]
+* http://www4.ncsu.edu/~cwu10/files/NDSS13_DEHYPE.pdf[DeHype]
+
+== Protection
+
+Slow CPUs
+[{stepwise}]
+* Need *25000* times slower to hide VMEXITs overhead
+
+== Behaviors
+
+[{middle}]
+Calling *thousands* of VMEXITs is doubious +
+ +
+ +
+[incremental pull-right]#...Set up a threshold, and 'hide VMM when hit' {nbsp} {nbsp}#
+
+== Intel Haswell
+
+Less VMEXITs
+[{stepwise}]
+* image:intel-haswell.png[width=280, caption="New VMEXITs", role=""][detail]#www.pcworld.fr#
+* *Reducing* ratio and time-based attack *reliance*
+
+== Roadmap
+
+[{statement}]
+toward *hypervisor* into the *CPU*
+
+[{intro}]
+== Counter counter measure
+
+== Nether
+
+[{stepwise}]
+* Formally correct
+* Practically: *weaknesses*
+
+[{statement}]
+Detect ether!
+
+http://dl.acm.org/citation.cfm?id=1972554[PDF]
+
+//== Measure hypervisors attack surface
+//
+//RDTSC and cpuid as examples
+
+== Conclusion
+
+[{stepwise}]
+* Should we need detection ?
+* New challenges of physical hypervisor
+
+// Ce qui explique la derniere partie de ce talk!
+[{ending}, hrole="name"]
+== Merci!
+
+[role="footer"]
+{website}
