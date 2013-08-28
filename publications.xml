@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="publications.xsl"?>
+<publi>
+  <article>
+    <title>Malware vs Virtualization : The endless cat and mouse play</title>
+    <year>2013</year>
+    <authors>Aurélien Wailly</authors>
+    <conference>HIP</conference>
+    <confsite>https://www.hackinparis.com/</confsite>
+    <abstract></abstract>
+    <published>yes</published>
+    <slides>publications/hip-2013-slides.html</slides>
+  </article>
+  <article>
+    <title>Engineering Intrusion Prevention Services for IaaS Clouds: The Way of the Hypervisor</title>
+    <year>2013</year>
+    <authors>Sylvie Laniepce, Marc Lacoste, Mohammed Kassi-Lahlou, Fabien Bignon, Kahina Lazri and Aurélien Wailly</authors>
+    <conference>SOSE</conference>
+    <confsite>http://sei.pku.edu.cn/conference/sose2013</confsite>
+    <acm>http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6525501</acm>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
+    <title>RetroVisor: Nested Virtualization for Multi IaaS VM Availability</title>
+    <year>2013</year>
+    <authors>Aurélien Wailly, Marc Lacoste and Hervé Debar</authors>
+    <conference>ComPAS</conference>
+    <confsite>http://compas2013.inrialpes.fr/</confsite>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
+    <title>Self-Defending Clouds: Myth and Realities</title>
+    <year>2012</year>
+    <authors>Marc Lacoste, Aurélien Wailly and Hervé Debar</authors>
+    <conference>C&amp;ESAR</conference>
+    <confsite>http://www.cesar-conference.org/</confsite>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
+    <title>VESPA: Multi-Layered Self-Protection for Cloud Resources</title>
+    <year>2012</year>
+    <authors>Aurélien Wailly, Marc Lacoste and Hervé Debar</authors>
+    <conference>ICAC</conference>
+    <confsite>http://icac2012.cs.fiu.edu</confsite>
+    <acm>http://dl.acm.org/citation.cfm?id=2371536.2371564</acm>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
+    <title>CGA as alternative security credentials with IKEv2: implementation and analysis</title>
+    <year>2012</year>
+    <authors>Jean-Michel Combes, Aurélien Wailly and Maryline Laurent</authors>
+    <conference>SARSSI</conference>
+    <confsite>https://sarssi2012.greyc.fr</confsite>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
+    <title>KungFuVisor: Enabling Self-Defense Hypervisor</title>
+    <year>2012</year>
+    <authors>Aurélien Wailly, Marc Lacoste and Hervé Debar</authors>
+    <conference>EuroDW</conference>
+    <confsite>http://nsl.epfl.ch/edw2012/index.html</confsite>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
+    <title>-</title>
+    <year>2011</year>
+    <authors>Aurélien Wailly, Marc Lacoste and Hervé Debar</authors>
+    <conference>SOSP</conference>
+    <confsite>http://sosp2011.gsd.inesc-id.pt</confsite>
+    <abstract></abstract>
+    <published>no</published>
+  </article>
+  <article>
+    <title>Internet Key Exchange Version 2 With IPv6 Cryptographically Generated Addresses</title>
+    <year>2011</year>
+    <authors>Jean-Michel Combes, Aurélien Wailly and Maryline Laurent</authors>
+    <conference>ICSNA</conference>
+    <confsite>https://sites.google.com/site/agoraplaceorg/conferences/icsna-2011</confsite>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
+    <title>Towards Multi-Layer Autonomic Isolation of Cloud Computing and Networking Resources (Long paper)</title>
+    <year>2011</year>
+    <authors>Aurélien Wailly, Marc Lacoste and Hervé Debar</authors>
+    <conference>SARSSI</conference>
+    <confsite>http://sarssi-conf.org</confsite>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
+    <title>Towards Multi-Layer Autonomic Isolation of Cloud Computing and Networking Resources (Short paper)</title>
+    <year>2011</year>
+    <authors>Aurélien Wailly, Marc Lacoste and Hervé Debar</authors>
+    <conference>CSC Zurich</conference>
+    <confsite>http://www.zurich.ibm.com/~cca/csc2011/</confsite>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
+    <title>IKEv2 with CGA</title>
+    <year>2010</year>
+    <authors>Jean-Michel Combes and Aurélien Wailly</authors>
+    <conference>IETF 79 Proceedings - ipsecme</conference>
+    <confsite>http://www.ietf.org/proceedings/79/ipsecme.html</confsite>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
+    <title>Utilisation d'un nouveau type de matériel de sécurité avec IPsec/IKEv2</title>
+    <year>2010</year>
+    <authors>Aurélien Wailly</authors>
+    <conference>Stage</conference>
+    <confsite></confsite>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <!--
+  <article>
+    <title></title>
+    <year></year>
+    <conference></conference>
+    <confsite></confsite>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  -->
+</publi>
