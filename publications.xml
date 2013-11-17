@@ -2,6 +2,15 @@
 <?xml-stylesheet type="text/xsl" href="publications.xsl"?>
 <publi>
   <article>
+    <title>Flying Over Mobile Clouds with Security Planes: Select your Class of SLA for End-to-End Security</title>
+    <year>2013</year>
+    <authors>Marc Lacoste, Aurélien Wailly, Aymeric Tabourin, Loïc Habermacher, Xavier Le Guillou and Jean-Philippe Wary</authors>
+    <conference>UCC</conference>
+    <confsite>http://ucc2013.inf.tu-dresden.de/</confsite>
+    <abstract></abstract>
+    <published>no</published>
+  </article>
+  <article>
     <title>Malware vs Virtualization : The endless cat and mouse play</title>
     <year>2013</year>
     <authors>Aurélien Wailly</authors>
