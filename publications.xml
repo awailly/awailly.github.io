@@ -2,13 +2,33 @@
 <?xml-stylesheet type="text/xsl" href="publications.xsl"?>
 <publi>
   <article>
+    <title>End-to-End Security Architecture and Self-Protection Mechanisms for Cloud Computing Environments</title>
+    <year>2014</year>
+    <authors>Aurélien Wailly</authors>
+    <conference>Ph. D</conference>
+    <confsite>https://edite-de-paris.fr/public/person/see/3072318</confsite>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
+    <title>Self-Stabilizing Virtual Machine Hypervisor Architecture for Resilient Cloud</title>
+    <year>2014</year>
+    <authors>Alexander Binun, Mark Bloch, Shlomi Dolev, Ramzi Martin Kahil, Boaz Menuhin, Reuven Yagel, Thierry Coupaye, Marc Lacoste, Aurélien Wailly</authors>
+    <conference>SERVICES</conference>
+    <confsite>http://conferences.computer.org/scc/2014/</confsite>
+    <acm>http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6903266</acm>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
     <title>Flying Over Mobile Clouds with Security Planes: Select your Class of SLA for End-to-End Security</title>
     <year>2013</year>
     <authors>Marc Lacoste, Aurélien Wailly, Aymeric Tabourin, Loïc Habermacher, Xavier Le Guillou and Jean-Philippe Wary</authors>
     <conference>UCC</conference>
     <confsite>http://ucc2013.inf.tu-dresden.de/</confsite>
+    <acm>http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6809339</acm>
     <abstract></abstract>
-    <published>no</published>
+    <published>yes</published>
   </article>
   <article>
     <title>Malware vs Virtualization : The endless cat and mouse play</title>
