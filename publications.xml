@@ -2,6 +2,25 @@
 <?xml-stylesheet type="text/xsl" href="publications.xsl"?>
 <publi>
   <article>
+    <title>Toward ultimate deobfuscation</title>
+    <year>2015</year>
+    <authors>Aurélien Wailly</authors>
+    <conference>Securitydaylille1</conference>
+    <confsite>http://securitydaylille1.github.io/</confsite>
+    <abstract></abstract>
+    <published>no</published>
+  </article>
+  <article>
+    <title>Étude et avenir de la sécurité des solutions de virtualisation</title>
+    <year>2014</year>
+    <authors>Aurélien Wailly</authors>
+    <conference>TSI</conference>
+    <confsite>http://www.techniques-ingenieur.fr</confsite>
+    <acm>http://www.techniques-ingenieur.fr/base-documentaire/technologies-de-l-information-th9/securite-des-si-services-et-applications-42315210/etude-et-avenir-de-la-securite-des-solutions-de-virtualisation-h6035/</acm>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
     <title>End-to-End Security Architecture and Self-Protection Mechanisms for Cloud Computing Environments</title>
     <year>2014</year>
     <authors>Aurélien Wailly</authors>
