@@ -2,6 +2,16 @@
 <?xml-stylesheet type="text/xsl" href="publications.xsl"?>
 <publi>
   <article>
+    <title>Évolution des paradigmes de la sécurité pour les réseaux et systèmes dans le Cloud</title>
+    <year>2015</year>
+    <authors>Aurélien Wailly</authors>
+    <conference>RESSI 2015 (Invité)</conference>
+    <confsite>http://ressi2015.utt.fr/programme.htm#tuto2</confsite>
+    <abstract></abstract>
+    <published>yes</published>
+    <acm>http://ressi2015.utt.fr/programme.htm#tuto2</acm>
+  </article>
+  <article>
     <title>Towards ultimate deobfuscation</title>
     <year>2015</year>
     <authors>Aurélien Wailly</authors>
