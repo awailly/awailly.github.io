@@ -2,6 +2,15 @@
 <?xml-stylesheet type="text/xsl" href="publications.xsl"?>
 <publi>
   <article>
+    <title>Workshop on Security and Dependability of Multi-Domain Infrastructures</title>
+    <year>2017</year>
+    <authors></authors>
+    <conference>XDOM0 2017 (EuroSys workshop)</conference>
+    <confsite>http://xdom0-2017.supercloud-project.eu/</confsite>
+    <abstract></abstract>
+    <published>yes</published>
+  </article>
+  <article>
     <title>Data Stabilization Enforcement via Active Monitoring the Cloud Infrastructure Consistency Case</title>
     <year>2015</year>
     <authors>Reuven Yagel, Shlomi Dolev, Alexander Binun, Leonid Yankulin, Marc Lacoste, Thierry Coupaye, Mohammed Kassi-Lahlou, Alex Palesandro and Aurélien Wailly</authors>
@@ -9,7 +18,7 @@
     <confsite>http://www.ualberta.ca/~ioanis/sss15/</confsite>
     <acm>http://www.ualberta.ca/~ioanis/sss15/tbd.html</acm>
     <abstract></abstract>
-    <published>no</published>
+    <published>yes</published>
   </article>
   <article>
     <title>Évolution des paradigmes de la sécurité pour les réseaux et systèmes dans le Cloud</title>
