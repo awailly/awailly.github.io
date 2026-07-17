@@ -1,141 +1,790 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>aurelien.wail.ly</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Homepage of Aurélien Wailly">
-    <meta name="author" content="Aurélien Wailly">
+<head>
+  <meta charset="utf-8">
+  <title>Aurélien Wailly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aurélien Wailly, Senior Security Manager. Cloud security, virtualization, autonomic computing.">
+  <meta name="author" content="Aurélien Wailly">
 
-    <!-- Le styles -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/ico/apple-touch-icon-180-precomposed.png">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Roboto+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
-    <!-- Favicons -->
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/ico/apple-touch-icon-180-precomposed.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon" href="assets/ico/apple-touch-icon-57-precomposed.png">
-  </head>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <body>
+    :root {
+      --bg: #ffffff;
+      --text: #313131;
+      --secondary: #595959;
+      --accent: #16213e;
+      --highlight: #7ec8e3;
+      --blue: #367195;
+      --mono: 'Roboto Mono', 'SF Mono', 'Consolas', monospace;
+    }
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Security Engineer</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="index.html">Home</a></li>
-              <li><a href="#publications">Publications</a></li>
-              <li><a href="cours/index.html">Lectures</a></li>
-              <li class="dropdown" id="menu1">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
-                  Projects
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="http://vespa.wail.ly">Vespa</a></li>
-                  <li><a href="http://kfv.wail.ly">KungFuVisor</a></li>
-                  <li><a href="https://github.com/awailly">RetroVisor</a></li>
-                  <li><a href="https://github.com/awailly">Undolence</a></li>
-                  <li><a href="https://github.com/awailly">Packer</a></li>
-                  <li class="divider"></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+
+    body {
+      font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    a:hover {
+      color: var(--highlight);
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--highlight);
+      outline-offset: 2px;
+    }
+
+    .page {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    header {
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid #e8e8e8;
+      margin-bottom: 3rem;
+    }
+
+    header nav {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+    }
+
+    .mark {
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.6rem;
+      color: var(--accent);
+    }
+
+    .mark sup {
+      color: var(--blue);
+      font-size: 0.6em;
+    }
+
+    header nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.8rem;
+    }
+
+    header nav a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--secondary);
+      letter-spacing: 0.01em;
+    }
+
+    header nav a:hover {
+      color: var(--accent);
+    }
+
+    header h1 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 2.4rem;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.01em;
+    }
+
+    header .role {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+    }
+
+    header p {
+      font-family: 'Lora', Georgia, serif;
+      color: var(--text);
+      max-width: 600px;
+      line-height: 1.5;
+      font-size: 1.15rem;
+    }
+
+    header .links {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    header .links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--secondary);
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 1px;
+    }
+
+    header .links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    header .links a svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 3.5rem;
+    }
+
+    section > h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.79rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+
+    /* Publications */
+    .pub-entry {
+      display: grid;
+      grid-template-columns: 5.5rem 1fr;
+      gap: 0 1rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .pub-entry:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .pub-entry .venue {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--secondary);
+      padding-top: 0.15rem;
+    }
+
+    .pub-entry .venue .year {
+      display: block;
+      font-weight: 500;
+      color: var(--blue);
+      margin-bottom: 0.1rem;
+    }
+
+    .pub-entry .venue a {
+      color: var(--secondary);
+    }
+
+    .pub-entry .venue a:hover {
+      color: var(--accent);
+    }
+
+    .pub-entry .details h3 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.34rem;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 0.2rem;
+    }
+
+    .pub-entry .details .authors {
+      font-size: 0.85rem;
+      color: var(--secondary);
+      margin-bottom: 0.4rem;
+    }
+
+    .pub-entry .details .files {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .pub-entry .details .files a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .pub-entry .details .files a:hover {
+      color: var(--accent);
+    }
+
+    /* Lectures */
+    .lecture-list {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 1.2rem 1.2rem;
+    }
+
+    .lecture-item {
+      display: contents;
+    }
+
+    .lecture-item .logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      border-radius: 4px;
+      align-self: center;
+    }
+
+    .lecture-item .info {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .lecture-item:last-child .info {
+      border-bottom: none;
+    }
+
+    .lecture-item .info strong {
+      font-size: 0.92rem;
+      font-weight: 600;
+      display: block;
+    }
+
+    .lecture-item .info .meta {
+      font-size: 0.82rem;
+      color: var(--secondary);
+    }
+
+    .lecture-item .info .meta .year {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--blue);
+    }
+
+    .lecture-item .info a.dl {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      margin-left: 0.6rem;
+    }
+
+    /* Projects */
+    .project-list {
+      display: grid;
+      grid-template-columns: 5.5rem 1fr;
+      gap: 0.3rem 1rem;
+    }
+
+    .project-item {
+      display: contents;
+    }
+
+    .project-item .name {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding-top: 0.5rem;
+      color: var(--blue);
+    }
+
+    .project-item .name:hover {
+      color: var(--accent);
+    }
+
+    .project-item .desc {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
+
+    .project-item:last-child .desc {
+      border-bottom: none;
+    }
+
+    /* Contact */
+    .contact-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--secondary);
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 1px;
+    }
+
+    .contact-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .contact-links a svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: var(--secondary);
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.6rem; }
+      header nav ul { gap: 1rem; }
+      .pub-entry { grid-template-columns: 1fr; }
+      .pub-entry .venue { margin-bottom: 0.2rem; }
+      .lecture-list { grid-template-columns: 48px 1fr; gap: 1rem 0.8rem; }
+      .lecture-item .logo { width: 48px; height: 48px; }
+      .project-list { grid-template-columns: 1fr; }
+      .project-item .name { padding-top: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <nav>
+      <a class="mark" href="#">a<sup>w</sup></a>
+      <ul>
+        <li><a href="#publications">publications</a></li>
+        <li><a href="#lectures">lectures</a></li>
+        <li><a href="#projects">projects</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+    </nav>
+
+    <h1>Aurélien Wailly</h1>
+    <div class="role">Senior Security Manager, Amazon</div>
+    <p>I am a Senior Security Manager in Cloud computing security at Amazon, and previously Orange Labs. My primary research interest is the application of autonomic concepts to adapt security to cloud environments. I also study underlying virtualization security to evaluate the impact of security incidents, lower attack surface and provide remediation.</p>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/aurelienwailly"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+      <a href="https://github.com/awailly"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+      <a href="https://keybase.io/dad"><svg viewBox="0 0 24 24"><path d="M10.446 21.371c0 .528-.428.957-.957.957s-.957-.43-.957-.957c0-.528.429-.957.957-.957s.957.43.957.957zm-1.914-.001c0 .528-.428.957-.957.957s-.957-.43-.957-.957c0-.528.429-.957.957-.957s.957.43.957.957zm3.828 0c0 .528-.428.957-.957.957s-.957-.43-.957-.957c0-.528.429-.957.957-.957s.957.43.957.957zM12 2.544c-5.476 0-9.913 4.437-9.913 9.913 0 4.136 2.53 7.68 6.13 9.174-.04-.396-.076-.932.008-1.334.076-.363.492-2.308.492-2.308s-.126-.252-.126-.624c0-.585.339-.832.745-.832.352 0 .522.264.522.58 0 .354-.225.883-.341 1.373-.097.41.205.744.61.744.731 0 1.293-.77 1.293-1.882 0-.985-.708-1.674-1.72-1.674-1.17 0-1.858.878-1.858 1.785 0 .353.136.732.306.938.034.04.039.076.029.117l-.114.465c-.018.076-.06.092-.139.056-.517-.241-.84-.997-.84-1.604 0-1.306 1.263-2.504 2.898-2.504 1.522 0 2.704 1.084 2.704 2.533 0 1.512-.953 2.73-2.275 2.73-.444 0-.862-.231-1.005-.504 0 0-.22.838-.273 1.042-.099.38-.368.855-.548 1.145A9.89 9.89 0 0012 22.37c5.476 0 9.913-4.437 9.913-9.913S17.476 2.544 12 2.544z"/></svg>Keybase</a>
+      <a href="/sujet_de_doctorat.pdf"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zm-3 8h4v2h-4v-2zm0 4h4v2h-4v-2zm-2-4h1v2H8v-2zm0 4h1v2H8v-2z"/></svg>PhD Subject</a>
+    </div>
+  </header>
+
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2026</span>OASC</div>
+      <div class="details">
+        <h3>ReproBot: Autonomous Vulnerability Reproduction</h3>
+        <p class="authors">M. Guillossou, A. Wailly</p>
+        <div class="files">
         </div>
       </div>
     </div>
 
-    <div class="container">
-
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>Aurélien Wailly</a></h1>
-        <p>I am an engineer in Cloud computing security at Amazon, and previously Orange Labs. My primary research interest is the application of autonomic concepts to adapt security to cloud environments. I also study underlying virtualization security to evaluate the impact of security incidents, lower attack surface and provide remediation.</p>
-      </div>
-
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4">
-          <h2>Lectures</h2>
-          <p>I am a part-time lecturer in some French schools: Telecom SudParis and Telecom ParisTech.<br /><br />Slides are available below.</p>
-          <p><a class="btn" href="cours/index.html">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-          <h2>Resume</h2>
-          <p>PhD subject and online resume are available below.</p>
-          <p>I defended my PhD Thesis at <a href="http://www.telecom-sudparis.eu/p_fr_contacts_trombinoscope_32.html?dpt=RST" rel="tooltip" title="Team">Telecom SudParis</a> and the document is available in the publications list.</p>
-          <p><a href="https://www.linkedin.com/in/aurelienwailly"><img height="32" width="32" src="img/icons/32px/linkedin.png"/></a> <a href="/sujet_de_doctorat.pdf" class="btn btn-success" rel="popover" title="PhD Subject" data-content="End-to-end Security Architecture and Self-Protection Mechanisms for Cloud Computing Environments">PhD Subject</a></p>
-       </div>
-        <div class="span4">
-          <h2>Contact</h2>
-          <p>You can contact me at aurelien (@) wail (.) ly by using <a href="https://keybase.io/dad">keybase.io</a>. You can also <a href="https://twitter.com/awailly" rel="tooltip" title="@awailly">follow me on twitter</a>.</p>
-          <p></p>
-          <p><a href="https://twitter.com/awailly"><img height="32" width="32" src="img/icons/32px/twitter-2.png"/></a> <img height="32" width="32" src="img/icons/32px/email.png"/><p>
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2021</span>GameDay</div>
+      <div class="details">
+        <h3>AWS Security GameDay EMEA</h3>
+        <p class="authors">A. Wailly (Participant)</p>
+        <div class="files">
         </div>
       </div>
+    </div>
 
-<section id="publications"><div class="page-header"><h1>Publications <small>papers</small></h1></div><div class="row"><div class="span3 columns"><h3>2017</h3><p><a href="http://xdom0-2017.supercloud-project.eu/">XDOM0 2017 (EuroSys workshop)</a></p></div><div class="span9 columns"><h3>Workshop on Security and Dependability of Multi-Domain Infrastructures</h3><p/><p>Technical Program Committee</p><div class="btn-group"><a href="/publications/xdom0-2017-(eurosys-workshop)-2017.pdf" class="btn btn-info">PDF</a><a href="/publications/xdom0-2017-(eurosys-workshop)-2017-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/xdom0-2017-(eurosys-workshop)-2017.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2015</h3><p><a href="http://www.ualberta.ca/~ioanis/sss15/">SSS</a></p></div><div class="span9 columns"><h3>Data Stabilization Enforcement via Active Monitoring the Cloud Infrastructure Consistency Case</h3><p/><p>Reuven Yagel, Shlomi Dolev, Alexander Binun, Leonid Yankulin, Marc Lacoste, Thierry Coupaye, Mohammed Kassi-Lahlou, Alex Palesandro and Aurélien Wailly</p><div class="btn-group"><a href="http://www.ualberta.ca/~ioanis/sss15/tbd.html" class="btn btn-info">PDF</a><a href="/publications/sss-2015-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/sss-2015.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2015</h3><p><a href="http://ressi2015.utt.fr/programme.htm#tuto2">RESSI 2015 (Invité)</a></p></div><div class="span9 columns"><h3>Évolution des paradigmes de la sécurité pour les réseaux et systèmes dans le Cloud</h3><p/><p>Aurélien Wailly</p><div class="btn-group"><a href="http://ressi2015.utt.fr/programme.htm#tuto2" class="btn btn-info">PDF</a><a href="/publications/ressi-2015-(invit&#xE9;)-2015-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/ressi-2015-(invit&#xE9;)-2015.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2015</h3><p><a href="http://securitydaylille1.github.io/">Securitydaylille1</a></p></div><div class="span9 columns"><h3>Towards ultimate deobfuscation</h3><p/><p>Aurélien Wailly</p><div class="btn-group"><a href="http://lille1tv.univ-lille1.fr/collections/video.aspx?id=0c3fecd2-33c4-4919-afc1-3cc6138f8f2c" class="btn btn-info">PDF</a><a href="publications/securitydaylille1-2015-slides.html" class="btn btn-info">Slides</a><a href="/publications/securitydaylille1-2015.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2014</h3><p><a href="http://www.techniques-ingenieur.fr">TSI</a></p></div><div class="span9 columns"><h3>Étude et avenir de la sécurité des solutions de virtualisation</h3><p/><p>Marc Lacoste and Aurélien Wailly</p><div class="btn-group"><a href="http://www.techniques-ingenieur.fr/base-documentaire/technologies-de-l-information-th9/securite-des-si-services-et-applications-42315210/etude-et-avenir-de-la-securite-des-solutions-de-virtualisation-h6035/" class="btn btn-info">PDF</a><a href="/publications/tsi-2014-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/tsi-2014.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2014</h3><p><a href="https://edite-de-paris.fr/public/person/see/3072318">Ph. D</a></p></div><div class="span9 columns"><h3>End-to-End Security Architecture and Self-Protection Mechanisms for Cloud Computing Environments</h3><p/><p>Aurélien Wailly</p><div class="btn-group"><a href="https://tel.archives-ouvertes.fr/tel-01186228" class="btn btn-info">PDF</a><a href="/publications/ph.-d-2014-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/ph.-d-2014.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2014</h3><p><a href="http://conferences.computer.org/scc/2014/">SERVICES</a></p></div><div class="span9 columns"><h3>Self-Stabilizing Virtual Machine Hypervisor Architecture for Resilient Cloud</h3><p/><p>Alexander Binun, Mark Bloch, Shlomi Dolev, Ramzi Martin Kahil, Boaz Menuhin, Reuven Yagel, Thierry Coupaye, Marc Lacoste, Aurélien Wailly</p><div class="btn-group"><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6903266" class="btn btn-info">PDF</a><a href="/publications/services-2014-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/services-2014.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2013</h3><p><a href="http://ucc2013.inf.tu-dresden.de/">UCC</a></p></div><div class="span9 columns"><h3>Flying Over Mobile Clouds with Security Planes: Select your Class of SLA for End-to-End Security</h3><p/><p>Marc Lacoste, Aurélien Wailly, Aymeric Tabourin, Loïc Habermacher, Xavier Le Guillou and Jean-Philippe Wary</p><div class="btn-group"><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6809339" class="btn btn-info">PDF</a><a href="/publications/ucc-2013-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/ucc-2013.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2013</h3><p><a href="https://www.hackinparis.com/">HIP</a></p></div><div class="span9 columns"><h3>Malware vs Virtualization : The endless cat and mouse play</h3><p/><p>Aurélien Wailly</p><div class="btn-group"><a href="https://www.youtube.com/watch?v=L-c22iQUG7k" class="btn btn-info">PDF</a><a href="publications/hip-2013-slides.html" class="btn btn-info">Slides</a><a href="/publications/hip-2013.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2013</h3><p><a href="http://sei.pku.edu.cn/conference/sose2013">SOSE</a></p></div><div class="span9 columns"><h3>Engineering Intrusion Prevention Services for IaaS Clouds: The Way of the Hypervisor</h3><p/><p>Sylvie Laniepce, Marc Lacoste, Mohammed Kassi-Lahlou, Fabien Bignon, Kahina Lazri and Aurélien Wailly</p><div class="btn-group"><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6525501" class="btn btn-info">PDF</a><a href="/publications/sose-2013-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/sose-2013.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2013</h3><p><a href="http://compas2013.inrialpes.fr/">ComPAS</a></p></div><div class="span9 columns"><h3>RetroVisor: Nested Virtualization for Multi IaaS VM Availability</h3><p/><p>Aurélien Wailly, Marc Lacoste and Hervé Debar</p><div class="btn-group"><a href="/publications/compas-2013.pdf" class="btn btn-info">PDF</a><a href="/publications/compas-2013-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/compas-2013.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2012</h3><p><a href="http://www.cesar-conference.org/">C&amp;ESAR</a></p></div><div class="span9 columns"><h3>Self-Defending Clouds: Myth and Realities</h3><p/><p>Marc Lacoste, Aurélien Wailly and Hervé Debar</p><div class="btn-group"><a href="/publications/c&amp;esar-2012.pdf" class="btn btn-info">PDF</a><a href="/publications/c&amp;esar-2012-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/c&amp;esar-2012.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2012</h3><p><a href="http://icac2012.cs.fiu.edu">ICAC</a></p></div><div class="span9 columns"><h3>VESPA: Multi-Layered Self-Protection for Cloud Resources</h3><p/><p>Aurélien Wailly, Marc Lacoste and Hervé Debar</p><div class="btn-group"><a href="http://dl.acm.org/citation.cfm?id=2371536.2371564" class="btn btn-info">PDF</a><a href="/publications/icac-2012-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/icac-2012.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2012</h3><p><a href="https://sarssi2012.greyc.fr">SARSSI</a></p></div><div class="span9 columns"><h3>CGA as alternative security credentials with IKEv2: implementation and analysis</h3><p/><p>Jean-Michel Combes, Aurélien Wailly and Maryline Laurent</p><div class="btn-group"><a href="/publications/sarssi-2012.pdf" class="btn btn-info">PDF</a><a href="/publications/sarssi-2012-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/sarssi-2012.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2012</h3><p><a href="http://nsg.networks.imdea.org/edw2012/index.html">EuroDW</a></p></div><div class="span9 columns"><h3>KungFuVisor: Enabling Self-Defense Hypervisor</h3><p/><p>Aurélien Wailly, Marc Lacoste and Hervé Debar</p><div class="btn-group"><a href="/publications/eurodw-2012.pdf" class="btn btn-info">PDF</a><a href="/publications/eurodw-2012-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/eurodw-2012.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2011</h3><p><a href="http://sosp2011.gsd.inesc-id.pt">SOSP</a></p></div><div class="span9 columns"><h3>-</h3><p/><p>Aurélien Wailly, Marc Lacoste and Hervé Debar</p><div class="btn-group"><a href="/publications/sosp-2011.pdf" class="btn btn-info disabled">PDF</a><a href="/publications/sosp-2011-slides.pdf" class="btn btn-info disabled">Slides</a><a href="/publications/sosp-2011.bib" class="btn btn-info disabled">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2011</h3><p><a href="https://sites.google.com/site/agoraplaceorg/conferences/icsna-2011">ICSNA</a></p></div><div class="span9 columns"><h3>Internet Key Exchange Version 2 With IPv6 Cryptographically Generated Addresses</h3><p/><p>Jean-Michel Combes, Aurélien Wailly and Maryline Laurent</p><div class="btn-group"><a href="/publications/icsna-2011.pdf" class="btn btn-info">PDF</a><a href="/publications/icsna-2011-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/icsna-2011.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2011</h3><p><a href="http://sarssi-conf.org">SARSSI</a></p></div><div class="span9 columns"><h3>Towards Multi-Layer Autonomic Isolation of Cloud Computing and Networking Resources (Long paper)</h3><p/><p>Aurélien Wailly, Marc Lacoste and Hervé Debar</p><div class="btn-group"><a href="/publications/sarssi-2011.pdf" class="btn btn-info">PDF</a><a href="/publications/sarssi-2011-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/sarssi-2011.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2011</h3><p><a href="http://www.zurich.ibm.com/~cca/csc2011/">CSC Zurich</a></p></div><div class="span9 columns"><h3>Towards Multi-Layer Autonomic Isolation of Cloud Computing and Networking Resources (Short paper)</h3><p/><p>Aurélien Wailly, Marc Lacoste and Hervé Debar</p><div class="btn-group"><a href="/publications/csc-zurich-2011.pdf" class="btn btn-info">PDF</a><a href="/publications/csc-zurich-2011-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/csc-zurich-2011.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2010</h3><p><a href="http://www.ietf.org/proceedings/79/ipsecme.html">IETF 79 Proceedings - ipsecme</a></p></div><div class="span9 columns"><h3>IKEv2 with CGA</h3><p/><p>Jean-Michel Combes and Aurélien Wailly</p><div class="btn-group"><a href="/publications/ietf-79-proceedings---ipsecme-2010.pdf" class="btn btn-info">PDF</a><a href="/publications/ietf-79-proceedings---ipsecme-2010-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/ietf-79-proceedings---ipsecme-2010.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/><div class="row"><div class="span3 columns"><h3>2010</h3><p><a href="">Stage</a></p></div><div class="span9 columns"><h3>Utilisation d'un nouveau type de matériel de sécurité avec IPsec/IKEv2</h3><p/><p>Aurélien Wailly</p><div class="btn-group"><a href="https://static-aurelien-wail-ly.s3-eu-west-1.amazonaws.com/stage-2010.pdf" class="btn btn-info">PDF</a><a href="/publications/stage-2010-slides.pdf" class="btn btn-info">Slides</a><a href="/publications/stage-2010.bib" class="btn btn-info">Bibtex</a></div></div></div><hr/></section>
-      <hr>
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2018</span>SecSummit</div>
+      <div class="details">
+        <h3>Detecting VM Escaping Malwares</h3>
+        <p class="authors">S. Molenkamp, A. Wailly</p>
+        <div class="files">
+        </div>
+      </div>
+    </div>
 
-      <footer>
-        <p>&copy; Aurélien Wailly 2017</p>
-      </footer>
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2017</span><a href="https://dl.acm.org/doi/book/10.1145/3071064">XDOM0</a></div>
+      <div class="details">
+        <h3>Workshop on Security and Dependability of Multi-Domain Infrastructures</h3>
+        <p class="authors">Technical Program Committee</p>
+        <div class="files">
+          <a href="/publications/xdom0-2017-(eurosys-workshop)-2017.pdf">pdf</a>
+          <a href="/publications/xdom0-2017-(eurosys-workshop)-2017-slides.pdf">slides</a>
+          <a href="/publications/xdom0-2017-(eurosys-workshop)-2017.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
 
-    </div> <!-- /container -->
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2015</span><a href="https://link.springer.com/book/10.1007/978-3-319-21741-3">SSS</a></div>
+      <div class="details">
+        <h3>Data Stabilization Enforcement via Active Monitoring the Cloud Infrastructure Consistency Case</h3>
+        <p class="authors">R. Yagel, S. Dolev, A. Binun, L. Yankulin, M. Lacoste, T. Coupaye, M. Kassi-Lahlou, A. Palesandro, A. Wailly</p>
+        <div class="files">
+          <a href="/publications/sss-2015-slides.pdf">slides</a>
+          <a href="/publications/sss-2015.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script>
-        !function ($) {
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2015</span><a href="https://web.archive.org/web/2015/http://ressi2015.utt.fr/programme.htm">RESSI</a></div>
+      <div class="details">
+        <h3>Évolution des paradigmes de la sécurité pour les réseaux et systèmes dans le Cloud</h3>
+        <p class="authors">A. Wailly (Invited)</p>
+        <div class="files">
+          <a href="/publications/ressi-2015-(invit%C3%A9)-2015-slides.pdf">slides</a>
+          <a href="/publications/ressi-2015-(invit%C3%A9)-2015.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
 
-          $(function(){
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2015</span><a href="https://web.archive.org/web/2015/http://securitydaylille1.github.io/">SecDay</a></div>
+      <div class="details">
+        <h3>Towards ultimate deobfuscation</h3>
+        <p class="authors">A. Wailly</p>
+        <div class="files">
+          <a href="publications/securitydaylille1-2015-slides.html">slides</a>
+          <a href="/publications/securitydaylille1-2015.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
 
-            $("a[rel=tooltip]").tooltip()
-            $("a[rel=popover]").popover()
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2014</span><a href="https://www.techniques-ingenieur.fr/base-documentaire/technologies-de-l-information-th9/securite-des-si-services-et-applications-42315210/etude-et-avenir-de-la-securite-des-solutions-de-virtualisation-h6035/">TSI</a></div>
+      <div class="details">
+        <h3>Étude et avenir de la sécurité des solutions de virtualisation</h3>
+        <p class="authors">M. Lacoste, A. Wailly</p>
+        <div class="files">
+          <a href="/publications/tsi-2014.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
 
-          })
-        }(window.jQuery)
-    </script>
-    <script type="text/javascript">
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2014</span><a href="https://edite-de-paris.fr/public/person/see/3072318">PhD</a></div>
+      <div class="details">
+        <h3>End-to-End Security Architecture and Self-Protection Mechanisms for Cloud Computing Environments</h3>
+        <p class="authors">A. Wailly</p>
+        <div class="files">
+          <a href="https://tel.archives-ouvertes.fr/tel-01186228">pdf</a>
+          <a href="/publications/ph.-d-2014-slides.pdf">slides</a>
+          <a href="/publications/ph.-d-2014.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
 
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-27249464-1']);
-      _gaq.push(['_trackPageview']);
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2014</span><a href="https://ieeexplore.ieee.org/document/6903266">SERVICES</a></div>
+      <div class="details">
+        <h3>Self-Stabilizing Virtual Machine Hypervisor Architecture for Resilient Cloud</h3>
+        <p class="authors">A. Binun, M. Bloch, S. Dolev, R. M. Kahil, B. Menuhin, R. Yagel, T. Coupaye, M. Lacoste, A. Wailly</p>
+        <div class="files">
+          <a href="/publications/services-2014-slides.pdf">slides</a>
+          <a href="/publications/services-2014.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
 
-      (function() {
-	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2013</span><a href="https://ieeexplore.ieee.org/document/6809339">UCC</a></div>
+      <div class="details">
+        <h3>Flying Over Mobile Clouds with Security Planes: Select your Class of SLA for End-to-End Security</h3>
+        <p class="authors">M. Lacoste, A. Wailly, A. Tabourin, L. Habermacher, X. Le Guillou, J.-P. Wary</p>
+        <div class="files">
+          <a href="/publications/ucc-2013-slides.pdf">slides</a>
+          <a href="/publications/ucc-2013.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
 
-    </script>
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2013</span><a href="https://web.archive.org/web/2013/http://www.hackinparis.com/">HIP</a></div>
+      <div class="details">
+        <h3>Malware vs Virtualization: The endless cat and mouse play</h3>
+        <p class="authors">A. Wailly</p>
+        <div class="files">
+          <a href="https://www.youtube.com/watch?v=L-c22iQUG7k">video</a>
+          <a href="publications/hip-2013-slides.html">slides</a>
+          <a href="/publications/hip-2013.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
 
-  </body>
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2013</span><a href="https://ieeexplore.ieee.org/document/6525501">SOSE</a></div>
+      <div class="details">
+        <h3>Engineering Intrusion Prevention Services for IaaS Clouds: The Way of the Hypervisor</h3>
+        <p class="authors">S. Laniepce, M. Lacoste, M. Kassi-Lahlou, F. Bignon, K. Lazri, A. Wailly</p>
+        <div class="files">
+          <a href="/publications/sose-2013-slides.pdf">slides</a>
+          <a href="/publications/sose-2013.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2013</span><a href="http://compas2013.inrialpes.fr/">ComPAS</a></div>
+      <div class="details">
+        <h3>RetroVisor: Nested Virtualization for Multi IaaS VM Availability</h3>
+        <p class="authors">A. Wailly, M. Lacoste, H. Debar</p>
+        <div class="files">
+          <a href="/publications/compas-2013.pdf">pdf</a>
+          <a href="/publications/compas-2013-slides.pdf">slides</a>
+          <a href="/publications/compas-2013.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2012</span><a href="http://www.cesar-conference.org/">C&amp;ESAR</a></div>
+      <div class="details">
+        <h3>Self-Defending Clouds: Myth and Realities</h3>
+        <p class="authors">M. Lacoste, A. Wailly, H. Debar</p>
+        <div class="files">
+          <a href="/publications/c&amp;esar-2012.pdf">pdf</a>
+          <a href="/publications/c&amp;esar-2012-slides.pdf">slides</a>
+          <a href="/publications/c&amp;esar-2012.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2012</span><a href="https://dl.acm.org/doi/10.1145/2371536.2371564">ICAC</a></div>
+      <div class="details">
+        <h3>VESPA: Multi-Layered Self-Protection for Cloud Resources</h3>
+        <p class="authors">A. Wailly, M. Lacoste, H. Debar</p>
+        <div class="files">
+          <a href="/publications/icac-2012-slides.pdf">slides</a>
+          <a href="/publications/icac-2012.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2012</span><a href="https://web.archive.org/web/2012/http://sarssi2012.greyc.fr/">SARSSI</a></div>
+      <div class="details">
+        <h3>CGA as alternative security credentials with IKEv2: implementation and analysis</h3>
+        <p class="authors">J.-M. Combes, A. Wailly, M. Laurent</p>
+        <div class="files">
+          <a href="/publications/sarssi-2012.pdf">pdf</a>
+          <a href="/publications/sarssi-2012-slides.pdf">slides</a>
+          <a href="/publications/sarssi-2012.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2012</span><a href="https://web.archive.org/web/2012/http://nsg.networks.imdea.org/edw2012/index.html">EuroDW</a></div>
+      <div class="details">
+        <h3>KungFuVisor: Enabling Self-Defense Hypervisor</h3>
+        <p class="authors">A. Wailly, M. Lacoste, H. Debar</p>
+        <div class="files">
+          <a href="/publications/eurodw-2012.pdf">pdf</a>
+          <a href="/publications/eurodw-2012-slides.pdf">slides</a>
+          <a href="/publications/eurodw-2012.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2011</span><a href="https://sites.google.com/site/agoraplaceorg/conferences/icsna-2011">ICSNA</a></div>
+      <div class="details">
+        <h3>Internet Key Exchange Version 2 With IPv6 Cryptographically Generated Addresses</h3>
+        <p class="authors">J.-M. Combes, A. Wailly, M. Laurent</p>
+        <div class="files">
+          <a href="/publications/icsna-2011.pdf">pdf</a>
+          <a href="/publications/icsna-2011-slides.pdf">slides</a>
+          <a href="/publications/icsna-2011.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2011</span><a href="https://web.archive.org/web/2011/http://sarssi-conf.org/">SARSSI</a></div>
+      <div class="details">
+        <h3>Towards Multi-Layer Autonomic Isolation of Cloud Computing and Networking Resources</h3>
+        <p class="authors">A. Wailly, M. Lacoste, H. Debar</p>
+        <div class="files">
+          <a href="/publications/sarssi-2011.pdf">pdf</a>
+          <a href="/publications/sarssi-2011-slides.pdf">slides</a>
+          <a href="/publications/sarssi-2011.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2011</span><a href="https://www.zurich.ibm.com/~cca/csc2011/">CSC</a></div>
+      <div class="details">
+        <h3>Towards Multi-Layer Autonomic Isolation of Cloud Computing and Networking Resources</h3>
+        <p class="authors">A. Wailly, M. Lacoste, H. Debar</p>
+        <div class="files">
+          <a href="/publications/csc-zurich-2011.pdf">pdf</a>
+          <a href="/publications/csc-zurich-2011-slides.pdf">slides</a>
+          <a href="/publications/csc-zurich-2011.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div class="venue"><span class="year">2010</span><a href="http://www.ietf.org/proceedings/79/ipsecme.html">IETF 79</a></div>
+      <div class="details">
+        <h3>IKEv2 with CGA</h3>
+        <p class="authors">J.-M. Combes, A. Wailly</p>
+        <div class="files">
+          <a href="/publications/ietf-79-proceedings---ipsecme-2010.pdf">pdf</a>
+          <a href="/publications/ietf-79-proceedings---ipsecme-2010-slides.pdf">slides</a>
+          <a href="/publications/ietf-79-proceedings---ipsecme-2010.bib">bibtex</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="lectures">
+    <h2>Lectures</h2>
+    <div class="lecture-list">
+      <div class="lecture-item">
+        <img class="logo" src="/img/brand/TSP-250px.png" alt="Telecom SudParis">
+        <div class="info">
+          <strong>Operating System Security</strong>
+          <div class="meta"><span class="year">2017</span> Telecom SudParis <a class="dl" href="https://static-aurelien-wail-ly.s3-eu-west-1.amazonaws.com/Supports-SudParis.pdf">slides</a></div>
+        </div>
+      </div>
+      <div class="lecture-item">
+        <img class="logo" src="/img/brand/logo-AFTI.png" alt="AFTI">
+        <div class="info">
+          <strong>Reverse Engineering &amp; CTF</strong>
+          <div class="meta"><span class="year">2016</span> AFTI <a class="dl" href="https://static-aurelien-wail-ly.s3-eu-west-1.amazonaws.com/Supports-AFTI-reverse.pdf">slides</a></div>
+        </div>
+      </div>
+      <div class="lecture-item">
+        <img class="logo" src="/img/brand/10k-300x200.png" alt="10K Students">
+        <div class="info">
+          <strong>Buffer Overflows</strong>
+          <div class="meta"><span class="year">2015</span> 10K Students <a class="dl" href="https://10kstudents.eu/material/">materials</a></div>
+        </div>
+      </div>
+      <div class="lecture-item">
+        <img class="logo" src="/img/brand/logo-AFTI.png" alt="AFTI">
+        <div class="info">
+          <strong>OS &amp; Virtualization Security</strong>
+          <div class="meta"><span class="year">2015</span> AFTI</div>
+        </div>
+      </div>
+      <div class="lecture-item">
+        <img class="logo" src="/img/brand/logo_telecom.png" alt="Telecom ParisTech">
+        <div class="info">
+          <strong>OS &amp; Virtualization Security</strong>
+          <div class="meta"><span class="year">2014</span> Telecom ParisTech <a class="dl" href="https://static-aurelien-wail-ly.s3-eu-west-1.amazonaws.com/Supports-ParisTech.pdf">slides</a></div>
+        </div>
+      </div>
+      <div class="lecture-item">
+        <img class="logo" src="/img/brand/eads.jpg" alt="EADS">
+        <div class="info">
+          <strong>Operating System Security</strong>
+          <div class="meta"><span class="year">2014</span> EADS <a class="dl" href="https://static-aurelien-wail-ly.s3-eu-west-1.amazonaws.com/Supports-EADS.pdf">slides</a></div>
+        </div>
+      </div>
+      <div class="lecture-item">
+        <img class="logo" src="/img/brand/BPCE-300x300.png" alt="BPCE">
+        <div class="info">
+          <strong>Operating System Security</strong>
+          <div class="meta"><span class="year">2013</span> BPCE <a class="dl" href="https://static-aurelien-wail-ly.s3-eu-west-1.amazonaws.com/Supports-BPCE.pdf">slides</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-list">
+      <div class="project-item">
+        <a class="name" href="https://github.com/awailly/vespa">VESPA</a>
+        <div class="desc">Multi-layered self-protection for cloud resources</div>
+      </div>
+      <div class="project-item">
+        <a class="name" href="https://github.com/awailly">RetroVisor</a>
+        <div class="desc">Nested virtualization for multi-IaaS VM availability</div>
+      </div>
+      <div class="project-item">
+        <a class="name" href="https://github.com/awailly/nrop">nROP</a>
+        <div class="desc">ROP chain compiler</div>
+      </div>
+      <div class="project-item">
+        <a class="name" href="https://github.com/awailly">Undolence</a>
+        <div class="desc">Security research tooling</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p style="color: var(--secondary); margin-bottom: 1rem; font-size: 0.92rem;">aurelien (@) wail (.) ly</p>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/aurelienwailly"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+      <a href="https://github.com/awailly"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+      <a href="https://keybase.io/dad"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M10.446 21.371c0 .528-.428.957-.957.957s-.957-.43-.957-.957c0-.528.429-.957.957-.957s.957.43.957.957zm-1.914-.001c0 .528-.428.957-.957.957s-.957-.43-.957-.957c0-.528.429-.957.957-.957s.957.43.957.957zm3.828 0c0 .528-.428.957-.957.957s-.957-.43-.957-.957c0-.528.429-.957.957-.957s.957.43.957.957zM12 2.544c-5.476 0-9.913 4.437-9.913 9.913 0 4.136 2.53 7.68 6.13 9.174-.04-.396-.076-.932.008-1.334.076-.363.492-2.308.492-2.308s-.126-.252-.126-.624c0-.585.339-.832.745-.832.352 0 .522.264.522.58 0 .354-.225.883-.341 1.373-.097.41.205.744.61.744.731 0 1.293-.77 1.293-1.882 0-.985-.708-1.674-1.72-1.674-1.17 0-1.858.878-1.858 1.785 0 .353.136.732.306.938.034.04.039.076.029.117l-.114.465c-.018.076-.06.092-.139.056-.517-.241-.84-.997-.84-1.604 0-1.306 1.263-2.504 2.898-2.504 1.522 0 2.704 1.084 2.704 2.533 0 1.512-.953 2.73-2.275 2.73-.444 0-.862-.231-1.005-.504 0 0-.22.838-.273 1.042-.099.38-.368.855-.548 1.145A9.89 9.89 0 0012 22.37c5.476 0 9.913-4.437 9.913-9.913S17.476 2.544 12 2.544z"/></svg>Keybase</a>
+      <a href="/sujet_de_doctorat.pdf"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zm-3 8h4v2h-4v-2zm0 4h4v2h-4v-2zm-2-4h1v2H8v-2zm0 4h1v2H8v-2z"/></svg>PhD Subject</a>
+      <a href="/aurelien.at.wail.ly.gpg"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12.65 10a6 6 0 10-9.73 6.68l-2.42 2.42a1 1 0 000 1.41l1 1a1 1 0 001.41 0l.3-.3.71.71a1 1 0 001.41 0l.71-.71.71.71a1 1 0 001.41 0l1.1-1.1A6 6 0 0012.65 10zM7 8.5A1.5 1.5 0 118.5 10 1.5 1.5 0 017 8.5z"/></svg>PGP key</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; Aurélien Wailly</p>
+  </footer>
+
+</div>
+</body>
 </html>
