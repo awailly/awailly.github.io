@@ -12,7 +12,7 @@ Personal site of Aurélien Wailly (Senior Security Manager, Amazon). Static GitH
 
 ## Design system (do not regress)
 
-The fonts and design values were chosen by **measurement**, not taste — glyph geometry scored against legibility research optima (see git history around commit `44bc24b`):
+The fonts and design values were chosen by **measurement**, not taste — glyph geometry scored against legibility research optima (see git history around commit `4242ccc`):
 
 - **Lora** — display: name, headings, publication titles (italic)
 - **Public Sans** — body text, authors
